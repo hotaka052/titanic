@@ -14,5 +14,5 @@ data-analysis.ipynb：データの可視化を行ったファイル
 ・python 3系  
 ・numpy  
 ・pandas  
-・scikit-learn
+・scikit-learn  
 ・xgboost
