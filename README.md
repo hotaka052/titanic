@@ -4,7 +4,7 @@ kaggle competitionの代表的なコンペであるtitanicコンペのノート�
 </br>  
 
 # フォルダについて  
-data：titanicのデータ  
+data：titanicコンペのデータ  
 titanic-1：scikit-learn インターフェースのXGBoostを使用したコード  
 titanic-2：ネイティブなXGBoostを使用したコード  
 data-analysis.ipynb：データの可視化を行ったファイル  
