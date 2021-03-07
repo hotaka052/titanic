@@ -5,7 +5,7 @@ from sklearn.metrics import accuracy_score
 import argparse
 
 parser = argparse.ArgumentParser(
-    description = "titanic competition of kaggle"
+    description = "parameter for xgboost"
 )
 
 parser.add_argument("--seed", default = 71, type = int,
