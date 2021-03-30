@@ -31,22 +31,24 @@ parser.add_argument("--output_folder", default = "/kaggle/working", type = str,
 args = parser.parse_args()
 
 def submission():
-    sub = pd.read_csv(args.data_folder + '/gender_submission.csv')
-
-    x_test = test_dataset()
-    dtest = xgb.DMatrix(x_test)
-
+    # モデルの学習
     model = train(
         args.seed,
         args.eta,
         args.max_depth,
         args.min_child_weight,
         args.early_stopping
+        args.data_folder
     )
+
+    x_test = test_dataset(args.data_folder)
+    dtest = xgb.DMatrix(x_test)
 
     y_pred = model.predict(dtest)
 
     y_pred =np.where(y_pred > 0.5,1,0)
+
+    sub = pd.read_csv(args.data_folder + '/gender_submission.csv')
 
     sub['Survived'] = y_pred
 

@@ -6,8 +6,8 @@ from sklearn.metrics import accuracy_score
 import warnings
 warnings.filterwarnings('ignore')
 
-def train(seed, eta, max_depth, min_child_weight, early_stopping):
-    x_train, x_val, y_train, y_val = titanic_dataset()
+def train(seed, eta, max_depth, min_child_weight, early_stopping, data_folder):
+    x_train, x_val, y_train, y_val = titanic_dataset(data_folder)
 
     dtrain = xgb.DMatrix(x_train, label = y_train)
     dvalid = xgb.DMatrix(x_val, label = y_val)

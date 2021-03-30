@@ -31,7 +31,7 @@ parser.add_argument("--output_folder", default = "/kaggle/working", type = str,
 args = parser.parse_args()
 
 def train():
-    x_train, x_val, y_train, y_val = titanic_dataset()
+    x_train, x_val, y_train, y_val = titanic_dataset(args.data_folder)
 
     model = XGBClassifier(
         booster = 'gbtree', 
@@ -58,11 +58,13 @@ def train():
     return model
 
 def submission():
-    sub = pd.read_csv(args.data_folder + '/gender_submission.csv')
-    x_test = test_dataset(args.data_folder)
+    # モデルの学習
     model = train()
 
+    x_test = test_dataset(args.data_folder)
     y_pred = model.predict(x_test)
+
+    sub = pd.read_csv(args.data_folder + '/gender_submission.csv')
     sub['Survived'] = y_pred
     sub.to_csv(args.output_folder + '/submission.csv', index = False)
 
