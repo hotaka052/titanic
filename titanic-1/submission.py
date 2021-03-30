@@ -59,7 +59,7 @@ def train():
 
 def submission():
     sub = pd.read_csv(args.data_folder + '/gender_submission.csv')
-    x_test = test_dataset()
+    x_test = test_dataset(args.data_folder)
     model = train()
 
     y_pred = model.predict(x_test)
