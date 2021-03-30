@@ -5,9 +5,9 @@ from sklearn.model_selection import train_test_split
 
 import pathlib
 
-def read_data():
-    train = pd.read_csv('../data/train.csv')
-    test = pd.read_csv('../data/test.csv')
+def read_data(data_folder):
+    train = pd.read_csv(data_folder + '/train.csv')
+    test = pd.read_csv(data_folder + '/test.csv')
 
     df_all = pd.concat([train, test])
 
@@ -94,8 +94,8 @@ def categorize(train, test, df_all):
 
     return train, test, df_all
 
-def preprocess():
-    train, test, df_all = read_data()
+def preprocess(data_folder):
+    train, test, df_all = read_data(data_folder)
     train, test, df_all = missing_value(train, test, df_all)
     train, test, df_all = drop_data(train, test, df_all)
     train, test, df_all = categorize(train, test, df_all)
@@ -111,13 +111,13 @@ def split(train):
 #=========================================
 #学習用のデータ
 #=========================================
-def titanic_dataset():
-    train, test = preprocess()
+def titanic_dataset(data_folder):
+    train, _ = preprocess(data_folder)
     return split(train)
 
 #=========================================
 #テスト用データ
 #=========================================
-def test_dataset():
-    train, test = preprocess()
+def test_dataset(data_folder):
+    _, test = preprocess(data_folder)
     return test.values

@@ -4,6 +4,9 @@ import xgboost as xgb
 from train import train
 from data_preprocessing import test_dataset
 
+import warnings
+warnings.filterwarnings('ignore')
+
 import argparse
 
 parser = argparse.ArgumentParser(
@@ -20,11 +23,15 @@ parser.add_argument("--min_child_weight", default = 4,  type = int,
                     help = "min_child_weight")
 parser.add_argument("--early_stopping", default = 4, type = int,
                     help = "何回、損失が更新されなかった時学習を止めるか")
+parser.add_argument("--data_folder", default = "/kaggle/input/titanic", type = str,
+                    help = "データのあるフォルダーへのパス")
+parser.add_argument("--output_folder", default = "/kaggle/working", type = str,
+                    help = "提出用ファイルを出力したいフォルダー")
 
 args = parser.parse_args()
 
 def submission():
-    sub = pd.read_csv('../data/gender_submission.csv')
+    sub = pd.read_csv(args.data_folder + '/gender_submission.csv')
 
     x_test = test_dataset()
     dtest = xgb.DMatrix(x_test)
@@ -43,7 +50,7 @@ def submission():
 
     sub['Survived'] = y_pred
 
-    sub.to_csv('submission.csv', index = False)
+    sub.to_csv(args.output_folder + 'submission.csv', index = False)
 
 if __name__ == "__main__":
     submission()

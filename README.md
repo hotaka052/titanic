@@ -3,11 +3,9 @@ kaggle competitionの代表的なコンペであるtitanicコンペのノート�
 参加期間：2020年4月中旬～5月中旬  
 </br>  
 
-# フォルダについて  
-data：titanicコンペのデータ（こちらからダウンロード：[titanic-kaggle](https://www.kaggle.com/c/titanic)）  
+# フォルダについて
 titanic-1：scikit-learn インターフェースのXGBoostを使用したコード  
 titanic-2：ネイティブなXGBoostを使用したコード  
-data-analysis.ipynb：データの可視化を行ったファイル  
 </br>
 
 # 必要なライブラリ
@@ -15,4 +13,12 @@ data-analysis.ipynb：データの可視化を行ったファイル
 ・numpy  
 ・pandas  
 ・scikit-learn  
-・xgboost
+・xgboost  
+</br>
+
+# 使いかた
+kaggleにファイルをアップロード  
+ノートを開いてデータなどと一緒にアップロードしたファイルを追加  
+
+作業ディレクトリをtitanic-1 or titanic-2にして  
+!python 実行したいファイル.py

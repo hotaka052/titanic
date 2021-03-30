@@ -2,6 +2,10 @@ import numpy as np
 from data_preprocessing import titanic_dataset
 from xgboost import XGBClassifier
 from sklearn.metrics import accuracy_score
+
+import warnings
+warnings.filterwarnings('ignore')
+
 import argparse
 
 parser = argparse.ArgumentParser(
@@ -18,10 +22,13 @@ parser.add_argument("--max_depth_list", default = [2, 3, 4, 5, 6], nargs = '+', 
                     help = "探索したいmax_depthのリスト")
 parser.add_argument("--min_child_weight_list", default = [1, 2, 3, 4, 5, 6, 7], nargs = '+', type = int,
                     help = "探索したいmin_child_weightのリスト")
+parser.add_argument('--data_folder', default = '/kaggle/input/titanic', type = str,
+                    help = "データのあるフォルダへのパス")
+
 args = parser.parse_args()
 
 def train_grid():
-    x_train, x_val, y_train, y_val = titanic_dataset()
+    x_train, x_val, y_train, y_val = titanic_dataset(args.data_folder)
 
     np.random.seed(args.seed)
 
