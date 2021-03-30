@@ -8,6 +8,10 @@ warnings.filterwarnings('ignore')
 
 import argparse
 
+"""
+train_random：ランダムにパラメータを探索する関数
+"""
+
 parser = argparse.ArgumentParser(
     description = "parameter for xgboost"
 )
@@ -39,6 +43,7 @@ def train_random():
         min_child_weight = np.random.choice(args.min_child_weight_list)
 
         model = XGBClassifier(
+            verbosity = 0,
             booster = 'gbtree', 
             random_state = args.seed, 
             learning_rate = args.lr,

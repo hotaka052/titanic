@@ -8,6 +8,10 @@ warnings.filterwarnings('ignore')
 
 import argparse
 
+"""
+train_grid：パラメータをグリッドサーチする関数
+"""
+
 parser = argparse.ArgumentParser(
     description = "titanic competition of kaggle"
 )
@@ -36,6 +40,7 @@ def train_grid():
         for min_child_weight in args.min_child_weight_list:
 
             model = XGBClassifier(
+                verbosity = 0,
                 booster = 'gbtree', 
                 random_state = args.seed, 
                 learning_rate = args.lr,

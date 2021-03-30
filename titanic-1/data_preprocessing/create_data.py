@@ -1,10 +1,23 @@
 import pandas as pd
-import numpy as np
-import os
 from sklearn.model_selection import train_test_split
 
-import pathlib
+import warnings
+warnings.filterwarnings('ignore')
 
+from data_preprocessing.base_preprocessing import *
+
+"""
+モデルに合うようにデータを加工する関数
+    read_data：データを読み込む関数
+    preprocess：データを加工する関数をまとめた関数
+    split：学習用データを分割する関数
+    titanic_dataset：学習用データを作成する関数
+    test_datasset：テスト用データセットを作成する関数
+"""
+
+#================================================
+# read_data
+#================================================
 def read_data(data_folder):
     train = pd.read_csv(data_folder + '/train.csv')
     test = pd.read_csv(data_folder + '/test.csv')
@@ -13,87 +26,9 @@ def read_data(data_folder):
 
     return train, test, df_all
 
-#================================================
-#欠損地の処理
-#Embarkedは一番多いSで埋める
-#Fare, ageは平均で埋める
-#Cabinは欠損値が多すぎるので削除
-#=================================================
-def missing_value(train, test, df_all):
-
-    #Embarked
-    train['Embarked'].fillna('S', inplace = True)
-
-    #Fare
-    fare_avg = df_all['Fare'].mean()
-    test['Fare'].fillna(fare_avg, inplace=True) 
-
-    #age
-    age_avg = df_all['Age'].mean()
-    train['Age'].fillna(age_avg, inplace = True)
-    test['Age'].fillna(age_avg, inplace = True)
-
-    #Cabin
-    train.drop('Cabin',axis=1,inplace=True)
-    test.drop('Cabin',axis=1,inplace=True)
-
-    return train, test, df_all
-
-#=================================================
-#データの選別
-#=================================================
-
-def drop_data(train, test, df_all):
-    #PassengerId
-    #単なる客番号であり、生存の有無には関係ないので削除
-    train.drop('PassengerId',axis=1,inplace=True)
-    test.drop('PassengerId',axis=1,inplace=True)
-
-    #Name
-    #数値化が難しいので削除
-    train.drop('Name',axis=1,inplace=True)
-    test.drop('Name',axis=1,inplace=True)
-
-    #Ticket
-    #数値化が難しいので削除
-    train.drop('Ticket',axis=1,inplace=True)
-    test.drop('Ticket',axis=1,inplace=True)
-
-    return train, test, df_all
-
-#===================================================
-#カテゴリ変数の数値化
-#===================================================
-
-def categorize(train, test, df_all):
-    #Sex
-    sex = df_all['Sex']
-    sex_dummies = pd.get_dummies(sex)
-
-    sex_dummies_train = sex_dummies[:891]
-    sex_dummies_test = sex_dummies[891:]
-
-    train = pd.concat([train,sex_dummies_train], axis=1)
-    test= pd.concat([test,sex_dummies_test],axis=1)
-
-    train.drop('Sex',axis=1,inplace=True)
-    test.drop('Sex',axis=1,inplace=True)
-
-    #Embarked
-    embarked = df_all['Embarked']
-    embarked_dummies = pd.get_dummies(embarked)
-
-    embarked_dummies_train = embarked_dummies[:891]
-    embarked_dummies_test = embarked_dummies[891:]
-
-    train = pd.concat([train,embarked_dummies_train],axis=1)
-    test = pd.concat([test,embarked_dummies_test],axis=1)
-
-    train.drop('Embarked',axis=1,inplace=True)
-    test.drop('Embarked',axis=1,inplace=True)
-
-    return train, test, df_all
-
+#========================================
+# preprocess
+#========================================
 def preprocess(data_folder):
     train, test, df_all = read_data(data_folder)
     train, test, df_all = missing_value(train, test, df_all)
@@ -102,6 +37,9 @@ def preprocess(data_folder):
 
     return train, test
 
+#========================================
+# split
+#========================================
 def split(train):
     X = train.drop("Survived", axis = 1).values
     y = train['Survived'].values
@@ -109,14 +47,14 @@ def split(train):
     return train_test_split(X, y, test_size = 0.3, random_state = 71)
 
 #=========================================
-#学習用のデータ
+# titanic_dataset
 #=========================================
 def titanic_dataset(data_folder):
     train, _ = preprocess(data_folder)
     return split(train)
 
 #=========================================
-#テスト用データ
+# test_dataset
 #=========================================
 def test_dataset(data_folder):
     _, test = preprocess(data_folder)

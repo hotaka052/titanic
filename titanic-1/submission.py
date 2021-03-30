@@ -9,6 +9,16 @@ warnings.filterwarnings('ignore')
 
 import argparse
 
+"""
+提出用ファイルを作成する関数
+    train：モデルを学習させる関数
+        引数：なし
+        返り値：学習済みモデル
+    submission：提出用ファイルを作成する関数
+        引数：なし
+        返り値：なし
+"""
+
 parser = argparse.ArgumentParser(
     description = "titanic competition of kaggle"
 )
@@ -30,10 +40,14 @@ parser.add_argument("--output_folder", default = "/kaggle/working", type = str,
 
 args = parser.parse_args()
 
+#=================================
+# train
+#=================================
 def train():
     x_train, x_val, y_train, y_val = titanic_dataset(args.data_folder)
 
     model = XGBClassifier(
+        verbosity = 0,
         booster = 'gbtree', 
         random_state = args.seed, 
         learning_rate = args.lr,
@@ -57,6 +71,9 @@ def train():
 
     return model
 
+#============================================
+# submission
+#============================================
 def submission():
     # モデルの学習
     model = train()

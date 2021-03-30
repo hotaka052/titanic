@@ -37,7 +37,7 @@ def submission():
         args.eta,
         args.max_depth,
         args.min_child_weight,
-        args.early_stopping
+        args.early_stopping,
         args.data_folder
     )
 
