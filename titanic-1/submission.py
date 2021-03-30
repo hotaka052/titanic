@@ -58,13 +58,13 @@ def train():
     return model
 
 def submission():
-    sub = pd.read_csv(data_folder + '/gender_submission.csv')
+    sub = pd.read_csv(args.data_folder + '/gender_submission.csv')
     x_test = test_dataset()
     model = train()
 
     y_pred = model.predict(x_test)
     sub['Survived'] = y_pred
-    sub.to_csv(output_folder + '/submission.csv', index = False)
+    sub.to_csv(args.output_folder + '/submission.csv', index = False)
 
 if __name__ == '__main__':
     submission()
