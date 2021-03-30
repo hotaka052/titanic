@@ -32,13 +32,13 @@ os.chdir(path)
 !python 実行したいファイル.py &nbsp; 例）!python submission.py
 
 ※一度手元に置いてから使う場合  
-１．kaggleにファイルをデータとしてアップロード
+１．kaggleにファイルをデータセットとしてアップロード
 
-２．ノートにtitanicのデータとアップロードしたファイルを追加
+２．ノートにtitanicのデータとアップロードしたデータセットを追加
 
 ３．作業ディレクトリに移動  
 import os  
-path = "../input/データ名/tianic/作業ディレクトリ" &nbsp; 例）"../input/データ名/titanic/titanic-1"  
+path = "../input/データセット名/tianic/作業ディレクトリ" &nbsp; 例）"../input/データセット名/titanic/titanic-1"  
 os.chdir(path)
 
 ４．ファイルの実行  
