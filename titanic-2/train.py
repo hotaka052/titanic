@@ -6,6 +6,10 @@ from sklearn.metrics import accuracy_score
 import warnings
 warnings.filterwarnings('ignore')
 
+"""
+train：モデルを学習させる関数
+"""
+
 def train(seed, eta, max_depth, min_child_weight, early_stopping, data_folder):
     x_train, x_val, y_train, y_val = titanic_dataset(data_folder)
 

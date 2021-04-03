@@ -4,7 +4,7 @@ from sklearn.model_selection import train_test_split
 import warnings
 warnings.filterwarnings('ignore')
 
-from data_preprocessing.base_preprocessing import *
+from .base_preprocessing import *
 
 """
 モデルに合うようにデータを加工する関数

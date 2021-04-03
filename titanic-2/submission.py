@@ -9,6 +9,10 @@ warnings.filterwarnings('ignore')
 
 import argparse
 
+"""
+submission：提出ファイルを作成する関数
+"""
+
 parser = argparse.ArgumentParser(
     description = "parameter for xgboost"
 )
@@ -41,6 +45,7 @@ def submission():
         args.data_folder
     )
 
+    #推論
     x_test = test_dataset(args.data_folder)
     dtest = xgb.DMatrix(x_test)
 
@@ -52,7 +57,7 @@ def submission():
 
     sub['Survived'] = y_pred
 
-    sub.to_csv(args.output_folder + 'submission.csv', index = False)
+    sub.to_csv(args.output_folder + '/submission.csv', index = False)
 
 if __name__ == "__main__":
     submission()

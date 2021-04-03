@@ -1,11 +1,11 @@
 import pandas as pd
 from sklearn.model_selection import train_test_split
 
-from data_preprocessing.base_preprocessing import *
-from data_preprocessing.add_column import *
+from .base_preprocessing import *
+from .add_column import *
 
 """
-データを学習できるように作り変える
+データを学習できるように作り変える関数
     read_data：データを読み込む関数
     preprocess：データを加工する関数をまとめた関数
     split：学習用データを分割する関数

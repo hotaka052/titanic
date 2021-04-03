@@ -1,7 +1,7 @@
 import pandas as pd
 
 """
-データに基本的な加工を施す
+データに基本的な加工を施す関数
     missing_value：欠損値を加工する関数
     drop_data：必要のないカラムを削除する関数
     categorize：カテゴリ変数を数値化する関数

@@ -12,11 +12,7 @@ import argparse
 """
 提出用ファイルを作成する関数
     train：モデルを学習させる関数
-        引数：なし
-        返り値：学習済みモデル
     submission：提出用ファイルを作成する関数
-        引数：なし
-        返り値：なし
 """
 
 parser = argparse.ArgumentParser(
