@@ -17,29 +17,18 @@ titanic-2：ネイティブなXGBoostを使用したコード
 </br>
 
 # 使いかた
-※githubから直接使う場合  
-１．kaggleを開いてノートにtitanicのデータを追加
-
-２．githubからコードをノートに追加  
-!git clone https://github.com/haru-mingshi052/titanic.git   
-
-３．作業ディレクトリに移動  
-import os  
-path = "作業ディレクトリ" &nbsp; 例）path = './titanic/titanic-1'  
-os.chdir(path)
-
-４．ファイルの実行  
-!python 実行したいファイル.py &nbsp; 例）!python submission.py
-
-※一度手元に置いてから使う場合  
 １．kaggleにファイルをデータセットとしてアップロード
 
 ２．ノートにtitanicのデータとアップロードしたデータセットを追加
 
-３．作業ディレクトリに移動  
+３．作業ディレクトリ(titanic-1 or titanic-2)に移動  
+```py  
 import os  
-path = "../input/データセット名/tianic/作業ディレクトリ" &nbsp; 例）"../input/データセット名/titanic/titanic-1"  
-os.chdir(path)
+path = "../input/データセット名/tianic/作業ディレクトリ"
+os.chdir(path)" 
+```
 
 ４．ファイルの実行  
-!python 実行したいファイル.py &nbsp; 例）!python submission.py
+```py
+!python 実行したいファイル.py
+```
