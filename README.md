@@ -8,27 +8,8 @@ titanic-1：scikit-learn インターフェースのXGBoostを使用したコー
 titanic-2：ネイティブなXGBoostを使用したコード  
 </br>
 
-# 必要なライブラリ
-・python 3系  
+# 必要なライブラリ  
 ・numpy  
 ・pandas  
 ・scikit-learn  
 ・xgboost  
-</br>
-
-# 使いかた
-１．kaggleにファイルをデータセットとしてアップロード
-
-２．ノートにtitanicのデータとアップロードしたデータセットを追加
-
-３．作業ディレクトリ(titanic-1 or titanic-2)に移動  
-```py  
-import os  
-path = "../input/データセット名/tianic/作業ディレクトリ"
-os.chdir(path)" 
-```
-
-４．ファイルの実行  
-```py
-!python 実行したいファイル.py
-```
